@@ -8,33 +8,34 @@ module.exports = {
 
             con.query(query, function (err, result) {
                 if (err) reject(err);
+                // if(!result) reject('DB error');
                 let resObj = {};
-                for(item of result) {
-                    if(!resObj.hasOwnProperty(item.owner_id)) {
-                        // console.log('in not');
-                        resObj[item.owner_id] = {};
-                        resObj[item.owner_id].data = {};
-                        resObj[item.owner_id].name = item.author;
-                    }
-                    let key = '';
-                    switch (item.region) {
-                        case 1: {
-                            key = 'countNiko';
-                            break;
-                        }
-                        case 2: {
-                            key = 'countUkr';
-                            break;
-                        }
-                        case 3: {
-                            key = 'countWorld';
-                            break
-                        }
-                    }
-                    if(key) {
-                        resObj[item.owner_id].data[key] = item.count;
-                    }
-                }
+                // for(item of result) {
+                //     if(!resObj.hasOwnProperty(item.owner_id)) {
+                //         // console.log('in not');
+                //         resObj[item.owner_id] = {};
+                //         resObj[item.owner_id].data = {};
+                //         resObj[item.owner_id].name = item.author;
+                //     }
+                //     let key = '';
+                //     switch (item.region) {
+                //         case 1: {
+                //             key = 'countNiko';
+                //             break;
+                //         }
+                //         case 2: {
+                //             key = 'countUkr';
+                //             break;
+                //         }
+                //         case 3: {
+                //             key = 'countWorld';
+                //             break
+                //         }
+                //     }
+                //     if(key) {
+                //         resObj[item.owner_id].data[key] = item.count;
+                //     }
+                // }
                 resolve({
                     "30": {
                         "data": {
@@ -68,7 +69,7 @@ module.exports = {
 
             con.query(query, function (err, result) {
                 if (err) reject(err);
-
+                if(!result) reject('DB error');
                 let resArray = [];
                 for(item of result) {
                     let obj = {
@@ -90,7 +91,7 @@ module.exports = {
 
             con.query(query, function (err, result) {
                 if (err) reject(err);
-
+                if(!result) reject('DB error');
                 let resArray = [];
                 console.log('RESuLT', result);
                 for(item of result) {
@@ -114,6 +115,7 @@ module.exports = {
 
             con.query(query, function (err, result) {
                 if (err) reject(err);
+                if(!result) reject('DB error');
                 let resObj = {};
                 for(item of result) {
                     if(!resObj.hasOwnProperty(item.owner_id)) {
@@ -147,6 +149,7 @@ module.exports = {
 
             con.query(query, function (err, result) {
                 if (err) reject(err);
+                if(!result) reject('DB error');
                 resolve(result);
             });
         });
