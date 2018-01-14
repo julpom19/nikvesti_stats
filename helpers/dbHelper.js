@@ -35,7 +35,29 @@ module.exports = {
                         resObj[item.owner_id].data[key] = item.count;
                     }
                 }
-                resolve(resObj);
+                resolve({
+                    "30": {
+                        "data": {
+                            "countNiko": 9,
+                            "countUkr": 5,
+                            "countWorld": 6
+                        },
+                        "name": "Дмитрий Булаш"
+                    },
+                    "31": {
+                        "data": {
+                            "countUkr": 1
+                        },
+                        "name": "Артем Куцолабский"
+                    },
+                    "38": {
+                        "data": {
+                            "countUkr": 5,
+                            "countWorld": 4
+                        },
+                        "name": " Бойченко Ю."
+                    }
+                });
             });
         });
 
@@ -70,6 +92,7 @@ module.exports = {
                 if (err) reject(err);
 
                 let resArray = [];
+                console.log('RESuLT', result);
                 for(item of result) {
                     let obj = {
                         author: item.author,
