@@ -7,9 +7,12 @@ module.exports = {
             let query = 'select count(title) as count, region, owner_id, (select concat(first_name," ",last_name) from users where id = owner_id) as author from nodes where ((published >= ' + startDate + ' AND published <= ' + endDate + ') AND (title is not null) AND (type = "news")) group by owner_id, region;'
 
             con.query(query, function (err, result) {
-                if (err) reject(err);
-                // if(!result) reject('DB error');
-                let resObj = {};
+                // if (err) reject(err);
+                // if(!result) {
+                //     reject('DB error');
+                //     return;
+                // }
+                // let resObj = {};
                 // for(item of result) {
                 //     if(!resObj.hasOwnProperty(item.owner_id)) {
                 //         // console.log('in not');
@@ -69,7 +72,10 @@ module.exports = {
 
             con.query(query, function (err, result) {
                 if (err) reject(err);
-                if(!result) reject('DB error');
+                if(!result) {
+                    reject('DB error');
+                    return;
+                }
                 let resArray = [];
                 for(item of result) {
                     let obj = {
@@ -91,7 +97,10 @@ module.exports = {
 
             con.query(query, function (err, result) {
                 if (err) reject(err);
-                if(!result) reject('DB error');
+                if(!result) {
+                    reject('DB error');
+                    return;
+                }
                 let resArray = [];
                 console.log('RESuLT', result);
                 for(item of result) {
@@ -115,7 +124,10 @@ module.exports = {
 
             con.query(query, function (err, result) {
                 if (err) reject(err);
-                if(!result) reject('DB error');
+                if(!result) {
+                    reject('DB error');
+                    return;
+                }
                 let resObj = {};
                 for(item of result) {
                     if(!resObj.hasOwnProperty(item.owner_id)) {
@@ -149,7 +161,10 @@ module.exports = {
 
             con.query(query, function (err, result) {
                 if (err) reject(err);
-                if(!result) reject('DB error');
+                if(!result) {
+                    reject('DB error');
+                    return;
+                }
                 resolve(result);
             });
         });
